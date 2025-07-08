@@ -1,0 +1,17 @@
+.lightcoral-button {
+    background-color: lightcoral;
+    color: white;
+    border: none;
+}
+
+.lightblue-button {
+    background-color: rgba(25, 225, 251, 0.71);
+    color: #333;
+}
+.button_1 {
+    background-color: yellow;
+}
+
+.button_2 {
+    background-color: orange;
+}
