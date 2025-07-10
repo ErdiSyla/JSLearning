@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lose Rock Paper Scissors</title>
+</head>
+<body>
+    <p>Rock Paper Scissors</p>
+    <button onclick="console.log('rock'); alertUser('rock', 'paper');">
+        Rock
+    </button>
+    <button onclick="console.log('paper'); console.log(alertUser('paper', 'scissors'));">Paper</button>
+    <button onclick="console.log('scissors'); alertUser('scissors', 'rock');">Scissors</button>
+    <button onclick="score.losses = 0; localStorage.removeItem('score');">Reset Score</button>
+    <script>
+        function alertUser (userPick, computerMove) {
+            alert(`You picked ${userPick}. Computer picked ${computerMove}. You lose. 
+                Wins: ${score.wins}, Losses: ${++score.losses}, Ties: ${score.ties}`);
+            localStorage.setItem('score', JSON.stringify(score));
+            return computerMove;
+        }
+        const score = JSON.parse(localStorage.getItem('score')) || {
+            wins: 0,
+            losses: 0,
+            ties: 0
+        };
+    </script>
+</body>
+</html>
