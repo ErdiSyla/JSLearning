@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lose Rock Paper Scissors</title>
+</head>
+<body>
+    <p>Rock Paper Scissors</p>
+    <button onclick="userPick = 'rock'; console.log('Paper'); alert(`You picked ${userPick}. Computer picked paper. You lose.`);">
+        Rock
+    </button>
+    <button onclick="userPick = 'paper'; console.log('Scissors'); alert(`You picked ${userPick}. Computer picked scissors. You lose.`);">Paper</button>
+    <button onclick="userPick = 'scissors'; console.log('Rock'); alert(`You picked ${userPick}. Computer picked rock. You lose.`);">Scissors</button>
+    <script>
+        let userPick = '';
+    </script>
+</body>
+</html>
