@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Amazon Shipping Calculator</title>
+</head>
+<body>
+  <p>
+    Amazon Shipping calculator<br /><br />
+    Orders under $40 = +$10 shipping.<br /><br />
+    Orders over $40 = FREE shipping.<br /><br />
+    <input type="number" id="orderCost" name="orderCost" placeholder="Cost of order" onkeydown="pressedEnter(event.key)"/>
+    <button onclick="calculateTotal();">Calculate</button>
+  </p>
+  <p class="totalCost"></p>
+
+  <script>
+    window.document
+    window.console
+    window.alert
+
+    function calculateTotal() {
+      const costElem = document.querySelector('#orderCost');
+      const totalElem = document.querySelector('.totalCost');
+      const cost = Number(costElem.value);
+
+      if (isNaN(cost) || costElem.value === "") {
+        totalElem.innerText = "Please enter a valid order amount.";
+        return;
+      }
+
+      if (cost < 40) {
+        totalElem.innerText = `Total cost: $${(cost + 10).toFixed(2)}`;
+      } else {
+        totalElem.innerText = `Total cost: $${cost.toFixed(2)}`;
+      }
+      
+    }
+
+    function pressedEnter(key) {
+
+        if(key === 'Enter'){
+          calculateTotal();
+        }
+        
+    }
+  </script>
+</body>
+</html>

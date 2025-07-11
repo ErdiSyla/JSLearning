@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        <input type="text" placeholder="Name" class="name" onkeydown="pressedEnter(event.key)">
+        <button onclick="showName();">Submit</button>
+    </p>
+    <p class="displayName"></p>
+    <script>
+        function showName(){
+            const userName = document.querySelector('.name').value;
+            document.querySelector('.displayName').innerText = `Your name is: ${userName}`;
+        }
+
+        function pressedEnter(key) {
+
+            if(key === 'Enter'){
+                showName();
+            }
+        }
+    </script>
+</body>
+</html>

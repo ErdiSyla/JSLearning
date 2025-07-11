@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lose Rock Paper Scissors</title>
+</head>
+<body>
+    <p>Rock Paper Scissors</p>
+    <button onclick="alertUser(); result('rock', 'paper'); ">Rock</button>
+    <button onclick="alertUser(); result('paper', 'scissors');">Paper</button>
+    <button onclick="alertUser(); result('scissors', 'rock');">Scissors</button>
+    <p class="result"></p>
+    <p class="score"></p>
+    <button onclick="resetScore();">Reset Score</button>
+    <script>
+        function alertUser () {
+            score.losses++;
+            localStorage.setItem('score', JSON.stringify(score));
+            showScore();
+        }
+
+        function resetScore(){
+            score.losses = 0;
+            localStorage.removeItem('score');
+            showScore();
+        }
+
+        function showScore(){
+            const scoreElem = document.querySelector('.score');
+            scoreElem.innerText = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+        }
+
+        function result(userPick, computerMove){
+            const resultElem = document.querySelector('.result');
+            resultElem.innerText = `You lose.\n\nYou ${userPick} - ${computerMove} Computer.`;
+        }
+        const score = JSON.parse(localStorage.getItem('score')) || {
+            wins: 0,
+            losses: 0,
+            ties: 0
+        };
+
+        showScore();
+    </script>
+</body>
+</html>
