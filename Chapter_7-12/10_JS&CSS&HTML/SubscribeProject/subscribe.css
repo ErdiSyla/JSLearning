@@ -1,0 +1,22 @@
+body {
+    font-family: Arial;
+    margin: 10px;
+}
+
+.js-button, .subscribed{
+    border: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.js-button{
+    background-color: black;
+    color: white;
+}
+
+.subscribed {
+    background-color: rgb(240, 240, 240);
+    color: black;
+}
