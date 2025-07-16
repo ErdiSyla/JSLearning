@@ -1,0 +1,36 @@
+body {
+    font-family: "Arial";
+}
+
+.todoGrid, .inputGrid {
+    display: grid;
+    grid-template-columns: 200px 150px 100px;
+    gap: 10px;
+    align-items: center;
+}
+
+.inputGrid {
+    margin-bottom: 10px;
+    align-items: stretch;
+}
+
+.todoActivity, .todoDate{
+    font-size: 15px;
+    padding: 6px;
+}
+
+button {
+    color: white;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.addButton {
+    background-color: green;
+}
+
+.delButton {
+    background-color: darkred;  
+    padding: 10px 0px;    
+}

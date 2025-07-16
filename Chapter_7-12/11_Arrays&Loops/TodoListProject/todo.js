@@ -4,8 +4,14 @@ function showTodo(){
     let todoListHTML = '';
 
     for(let i = 0; i < todoList.length; i++){
-        const todo = todoList[i];
-        const html = `<p>${todo}</p>`;
+        const todoObject = todoList[i];
+        const { activity, dueDate }= todoObject;
+
+        const html = `
+        <div>${activity}</div>
+        <div>${dueDate}</div>
+        <button class="delButton" onclick="deleteTodo(${i}); showTodo();">Delete</button>
+        `;
         todoListHTML += html;
     }
 
@@ -14,11 +20,26 @@ function showTodo(){
 
 
 function addTodo(){
-    const inputElem = document.querySelector('.todoInput');
-    let todo = inputElem.value;
+    const activityInput = document.querySelector('.todoActivity');
+    const dateInput = document.querySelector('.todoDate');
+
+    let todo = {
+        activity : activityInput.value,
+        dueDate:  dateInput.value
+    };
 
     todoList.push(todo);
-    console.log(todoList);
 
-    inputElem.value = '';
+    activityInput.value = '';
+    showTodo();
+}
+
+function deleteTodo(index){
+    todoList.splice(index, 1);
+}
+
+function pressedEnter(key) {
+  if (key === "Enter") {
+    addTodo();
+  }
 }

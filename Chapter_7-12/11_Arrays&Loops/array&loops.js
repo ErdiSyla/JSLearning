@@ -127,3 +127,53 @@ function countWords(words){
 const wordArr = ["hello", "world", "hello", "test"];
 
 console.log(countWords(wordArr));
+
+const array1 = [1, 2, 3];
+const array2 = array1.slice();
+
+array2.push(4);
+
+console.log(array1);
+console.log(array2);
+
+const [firstValue, secondValue, thirdValue] = [1, 2 , 3];
+
+for(let i = 1; i <=10; i++){
+
+  if(i % 3 === 0){
+    continue;
+  }
+
+  if(i === 8){
+    break;
+  }
+
+  console.log(i);
+}
+
+let i = 1;
+
+while(i <= 10){
+  if(i % 2 === 0){
+    i++;
+    continue;
+  }
+  console.log(i++);
+}
+
+function doubleArray(nums){
+  const numsDoubled = [];
+  for(let i = 0; i < nums.length; i++){
+    const num = nums[i];
+
+    if(num === 0){
+      return numsDoubled;
+    }
+
+    numsDoubled.push(num * 2);
+  }
+
+  return numsDoubled;
+}
+
+console.log(doubleArray([2, 4, 2, 0,  4, 6]));

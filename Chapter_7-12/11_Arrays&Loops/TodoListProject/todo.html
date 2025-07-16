@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
-    <link rel="stylesheet" href="todo.css">
+    <link rel="stylesheet" href="todo.css" />
     <script src="todo.js" defer></script>
-</head>
-<body>
-    <p>
-        Todo List
-    </p>
-    <input class="todoInput" placeholder="Todo name">
-    <button onclick="addTodo(); showTodo();">Add</button>
-    <section class="todoList">
-
+  </head>
+  <body>
+    <h2>Todo List</h2>
+    <section class="inputGrid">
+      
+      <input type="text" class="todoActivity"
+        placeholder="Todo name" onkeydown="pressedEnter(event.key)"/>
+      <input type="date" class="todoDate" />
+      <button class="addButton" onclick="addTodo();">Add</button>
     </section>
-</body>
+    <section class="todoList todoGrid"></section>
+  </body>
 </html>
