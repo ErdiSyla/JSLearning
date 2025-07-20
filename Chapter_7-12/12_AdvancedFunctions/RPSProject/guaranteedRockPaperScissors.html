@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lose Rock Paper Scissors</title>
+    <link rel="stylesheet" href="guaranteedRockPaperScissors.css">
+    <script src="guaranteedRockPaperScissors.js" defer></script
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+    <button onclick="alertUser(); result('rock', 'paper');" class="move-button">
+        <img src="./Images/rock-emoji.png" alt="Rock" class="move-icon">
+    </button>
+    <button onclick="alertUser(); result('paper', 'scissors');" class="move-button">
+        <img src="./Images/paper-emoji.png" alt="Paper" class="move-icon">
+    </button>
+    <button onclick="alertUser(); result('scissors', 'rock');" class="move-button">
+        <img src="./Images/scissors-emoji.png" alt="Scissors" class="move-icon">
+    </button>
+    <p class="result"></p>
+    <p class="moves"></p>
+    <p class="score"></p>
+    <button onclick="resetScore();" class="playButton">Reset Score</button>
+    <button class="playButton" onclick="autoPlay();">Auto Play</button>
+</body>
+</html>
