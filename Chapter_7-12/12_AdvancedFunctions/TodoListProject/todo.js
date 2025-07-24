@@ -3,7 +3,7 @@ const todoList = [];
 function showTodo(){
     let todoListHTML = '';
 
-    todoList.forEach(function(todoObject, index){
+    todoList.forEach((todoObject, index) =>{
         const { activity, dueDate }= todoObject;
 
         const html = `

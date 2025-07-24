@@ -47,16 +47,45 @@ setInterval(function() {
     console.log('interval');
 }, 3000);
 
-console.log('next line 2');*/
+console.log('next line 2');
 
 [
     'make dinner',
     'wash dishes',
     'watch youtube'
-].forEach(function(value, index) {
+].forEach((value, index) => {
     if(value == 'wash dishes'){
         return;
     }
     console.log(index);
     console.log(value);
+});
+
+const arrowFunction = () => {
+    console.log('Hello');
+}
+
+arrowFunction();
+
+const object2 = {
+    method: () => {
+
+    },
+    method() {
+
+    }
+}*/
+
+const clickElem = document.querySelector('.click');
+
+const eventListener = () => {
+    console.log('click');
+}
+
+clickElem.addEventListener('click', eventListener);
+
+clickElem.removeEventListener('click', eventListener);
+
+clickElem.addEventListener('click', () => {
+    console.log('click2');
 });
