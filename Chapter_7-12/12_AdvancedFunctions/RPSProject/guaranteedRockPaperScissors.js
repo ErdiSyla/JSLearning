@@ -41,6 +41,39 @@ function pickRandomMove() {
   }
 }
 
+document.querySelector('.rock-button')
+.addEventListener('click', () => {
+  alertUser(); 
+  result('rock', 'paper');
+})
+
+document.querySelector('.paper-button')
+.addEventListener('click', () => {
+  alertUser(); 
+  result('paper', 'scissors');
+})
+
+document.querySelector('.scissors-button')
+.addEventListener('click', () => {
+  alertUser(); 
+  result('scissors', 'rock');
+})
+
+document.body.addEventListener('keydown', (event) => {
+
+  if(event.key === 'r'){
+    alertUser(); 
+    result('rock', 'paper');
+  }else if(event.key === 'p'){
+    alertUser(); 
+    result('paper', 'scissors');
+  }else if(event.key === 's'){
+    alertUser(); 
+    result('scissors', 'rock');
+  }
+
+})
+
 function pickCounterMove(userPick) {
   if (userPick == "rock") {
     return "paper";
