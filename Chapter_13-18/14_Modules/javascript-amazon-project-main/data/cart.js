@@ -36,4 +36,18 @@ export function removeFromCart(productId) {
   saveToStorage();
 
   document.querySelector('.item-number').textContent = `${cartQuantity()} items`;
+  document.querySelector('.paymet-item-quantity').textContent = `Items (${cartQuantity()})`;
+}
+
+export function updateQuantity(productId, newQuantity){
+  const index = cart.findIndex((cartItem) => cartItem.productId === productId);
+
+  if(index !== -1){
+    cart[index].quantity = newQuantity;
+  }
+
+  saveToStorage();
+
+  document.querySelector('.item-number').textContent = `${cartQuantity()} items`;
+  document.querySelector('.paymet-item-quantity').textContent = `Items (${cartQuantity()})`;
 }

@@ -1,6 +1,8 @@
-import { cart , cartQuantity, removeFromCart } from "../data/cart.js";
+import { cart , cartQuantity, removeFromCart, updateQuantity } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./util/money.js";
+import { hello } from "https://unpkg.com/supersimpledev@1.0.1/hello.esm.js";
+import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 
 let cartSummaryHTML = '';
 
@@ -37,11 +39,14 @@ cart.forEach((cartItem) =>{
                   <span>
                     Quantity: <span class="quantity-label">${cartItem.quantity}</span>
                   </span>
-                  <span class="update-quantity-link link-primary">
+                  <span class="update-quantity-link link-primary js-update-link"
+                    data-product-id="${matchingProduct.id}">
                     Update
                   </span>
+                  <input class="quantity-input">
+                  <span class="save-quantity-link link-primary">Save</span>
                   <span class="delete-quantity-link link-primary js-delete-link"
-                    data-product-id="${matchingProduct.id}">
+                  data-product-id="${matchingProduct.id}">
                     Delete
                   </span>
                 </div>
@@ -97,6 +102,7 @@ cart.forEach((cartItem) =>{
 });
 
 document.querySelector('.order-summary').innerHTML = cartSummaryHTML;
+document.querySelector('.paymet-item-quantity').textContent = `Items (${cartQuantity()})`;
 document.querySelector('.item-number').textContent = `${cartQuantity()} items`;
 
 document.querySelectorAll('.js-delete-link')
@@ -109,4 +115,50 @@ document.querySelectorAll('.js-delete-link')
       const container =  link.closest('.cart-item-container');
       container.remove();
     }))
+});
+
+document.querySelectorAll('.js-update-link')
+  .forEach((link) =>{
+    link.addEventListener('click' , (() =>{
+      const container =  link.closest('.cart-item-container');
+      const quantityInput = container.querySelector('.quantity-input');
+      const saveLink = container.querySelector('.save-quantity-link');
+
+      quantityInput.style.display = 'inline-block';
+      saveLink.style.display = 'inline-block';
+      link.style.display = 'none';
+
+      const currentQuantity = container.querySelector('.quantity-label').textContent;
+      quantityInput.value = currentQuantity;
+  }))
+});
+
+hello();
+
+const today = dayjs();
+const deliveryDate = today.add(7, 'days');
+
+console.log(deliveryDate.format('dddd, MMMM D'));
+
+
+document.querySelectorAll('.save-quantity-link')
+  .forEach((saveLink) => {
+    saveLink.addEventListener('click', () => {
+      const container = saveLink.closest('.cart-item-container');
+      const quantityInput = container.querySelector('.quantity-input');
+      const updateLink = container.querySelector('.js-update-link');
+      const quantityLabel = container.querySelector('.quantity-label');
+      const productId = updateLink.dataset.productId;
+
+      const newQuantity = Number(quantityInput.value);
+
+      if (newQuantity > 0) {
+        updateQuantity(productId, newQuantity);
+        quantityLabel.textContent = newQuantity;
+      }
+
+      quantityInput.style.display = 'none';
+      saveLink.style.display = 'none';
+      updateLink.style.display = 'inline-block';
+    });
   });
