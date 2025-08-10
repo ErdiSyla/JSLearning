@@ -1,4 +1,5 @@
 export let cart = JSON.parse(localStorage.getItem('cart'));
+import { deliveryOptions } from "./deliveryoptions.js";
 
 if (!cart){
   cart = [];
@@ -18,7 +19,7 @@ export function addToCart(productId, quantity) {
   if (cartItem) {
     cartItem.quantity += quantity;
   } else {
-    cart.push({ productId, quantity});
+    cart.push({ productId, quantity, deliveryOptionId: '1'});
   }
 
   saveToStorage();
