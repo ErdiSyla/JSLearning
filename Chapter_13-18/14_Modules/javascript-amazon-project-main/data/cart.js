@@ -14,10 +14,10 @@ export function cartQuantity() {
 }
 
 export function addToCart(productId, quantity) {
-  const cartItem = cart.find((cartItem) => cartItem.productId === productId);
+  const index = findProductIndex(productId);
 
-  if (cartItem) {
-    cartItem.quantity += quantity;
+  if (index != -1) {
+    cart[index].quantity += quantity;
   } else {
     cart.push({ productId, quantity, deliveryOptionId: '1'});
   }
@@ -28,7 +28,7 @@ export function addToCart(productId, quantity) {
 }
 
 export function removeFromCart(productId) {
-  const index = cart.findIndex((cartItem) => cartItem.productId === productId);
+  const index = findProductIndex(productId);
   
   if(index !== -1){
     cart.splice(index, 1);
@@ -37,11 +37,11 @@ export function removeFromCart(productId) {
   saveToStorage();
 
   document.querySelector('.item-number').textContent = `${cartQuantity()} items`;
-  document.querySelector('.paymet-item-quantity').textContent = `Items (${cartQuantity()})`;
+  document.querySelector('.payment-item-quantity').textContent = `Items (${cartQuantity()})`;
 }
 
 export function updateQuantity(productId, newQuantity){
-  const index = cart.findIndex((cartItem) => cartItem.productId === productId);
+  const index = findProductIndex(productId);
 
   if(index !== -1){
     cart[index].quantity = newQuantity;
@@ -50,5 +50,21 @@ export function updateQuantity(productId, newQuantity){
   saveToStorage();
 
   document.querySelector('.item-number').textContent = `${cartQuantity()} items`;
-  document.querySelector('.paymet-item-quantity').textContent = `Items (${cartQuantity()})`;
+  document.querySelector('.payment-item-quantity').textContent = `Items (${cartQuantity()})`;
+}
+
+export function updateDeliveryOption(productId, deliveryOptionId){
+  const index = findProductIndex(productId);
+
+  if(index !== -1){
+    cart[index].deliveryOptionId = deliveryOptionId;
+  }
+
+  saveToStorage();
+}
+
+function findProductIndex(productId){
+  const index = cart.findIndex((cartItem) => cartItem.productId === productId);
+
+  return index;
 }
