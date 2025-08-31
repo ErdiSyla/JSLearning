@@ -1,4 +1,5 @@
 export let cart = JSON.parse(localStorage.getItem('cart'));
+import { renderCheckOut } from "../scripts/checkout.js";
 import { deliveryOptions } from "./deliveryoptions.js";
 
 if (!cart){
@@ -36,8 +37,7 @@ export function removeFromCart(productId) {
 
   saveToStorage();
 
-  document.querySelector('.item-number').textContent = `${cartQuantity()} items`;
-  document.querySelector('.payment-item-quantity').textContent = `Items (${cartQuantity()})`;
+  renderCheckOut();
 }
 
 export function updateQuantity(productId, newQuantity){
@@ -49,8 +49,7 @@ export function updateQuantity(productId, newQuantity){
 
   saveToStorage();
 
-  document.querySelector('.item-number').textContent = `${cartQuantity()} items`;
-  document.querySelector('.payment-item-quantity').textContent = `Items (${cartQuantity()})`;
+  renderCheckOut();
 }
 
 export function updateDeliveryOption(productId, deliveryOptionId){
@@ -61,6 +60,8 @@ export function updateDeliveryOption(productId, deliveryOptionId){
   }
 
   saveToStorage();
+
+  renderCheckOut();
 }
 
 function findProductIndex(productId){

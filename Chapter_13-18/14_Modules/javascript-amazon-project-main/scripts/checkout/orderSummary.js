@@ -5,11 +5,10 @@ import {
   updateDeliveryOption,
   updateQuantity,
 } from "../../data/cart.js";
-import { products } from "../../data/products.js";
+import { getProduct } from "../../data/products.js";
 import { formatCurrency } from "../util/money.js";
-import { hello } from "https://unpkg.com/supersimpledev@1.0.1/hello.esm.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
-import { deliveryOptions } from "../../data/deliveryoptions.js";
+import { deliveryOptions, getDeliveryOption } from "../../data/deliveryoptions.js";
 
 export function renderOrderSummary() {
   generateSummaryHTML();
@@ -22,21 +21,11 @@ function generateSummaryHTML() {
   cart.forEach((cartItem) => {
     const productId = cartItem.productId;
 
-    let matchingProduct;
-
-    products.forEach((product) => {
-      if (product.id == productId) {
-        matchingProduct = product;
-      }
-    });
+    let matchingProduct = getProduct(productId);
 
     const deliveryOptionId = cartItem.deliveryOptionId;
 
-    let deliveryOption;
-
-    deliveryOptions.forEach((option) => {
-      if (option.id === deliveryOptionId) deliveryOption = option;
-    });
+    let deliveryOption = getDeliveryOption(deliveryOptionId);
 
     const today = dayjs();
 
@@ -90,14 +79,10 @@ function generateSummaryHTML() {
     </div>
   `;
 
-    document.querySelector(".order-summary").innerHTML = cartSummaryHTML;
-    document.querySelector(
-      ".payment-item-quantity"
-    ).textContent = `Items (${cartQuantity()})`;
-    document.querySelector(
-      ".item-number"
-    ).textContent = `${cartQuantity()} items`;
+  document.querySelector(".js-order-summary").innerHTML = cartSummaryHTML;
   });
+
+  document.querySelector(".item-number").textContent = `${cartQuantity()} items`;
 }
 
 function deliveryOptionsHTML(matchingProduct, cartItem) {
