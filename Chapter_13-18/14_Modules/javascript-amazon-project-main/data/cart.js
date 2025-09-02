@@ -57,9 +57,8 @@ export function updateQuantity(productId, newQuantity){
 
   if(index !== -1){
     cart[index].quantity = newQuantity;
+    saveToStorage();
   }
-
-  saveToStorage();
 }
 
 export function updateDeliveryOption(productId, deliveryOptionId){
@@ -67,9 +66,8 @@ export function updateDeliveryOption(productId, deliveryOptionId){
 
   if(index !== -1){
     cart[index].deliveryOptionId = deliveryOptionId;
+    saveToStorage();
   }
-
-  saveToStorage();
 }
 
 function findProductIndex(productId){
