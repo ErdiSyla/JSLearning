@@ -1,14 +1,14 @@
 class Cart {
-    cartItems = undefined;
-    localStorageKey = undefined;
+    cartItems;
+    #localStorageKey;
 
     constructor(localStorageKey) {
-        this.localStorageKey = localStorageKey;
-        this.loadFromStorage();
+        this.#localStorageKey = localStorageKey;
+        this.#loadFromStorage();
     }
 
-    loadFromStorage() {
-      this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
+    #loadFromStorage() {
+      this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
 
       if (!this.cartItems) {
         this.cartItems = [
@@ -26,8 +26,8 @@ class Cart {
       }
     }
     
-    saveToStorage() {
-      localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+    #saveToStorage() {
+      localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
     }
 
     cartQuantity() {
@@ -38,7 +38,7 @@ class Cart {
     }
 
     addToCart(productId, quantity) {
-      const index = this.findProductIndex(productId);
+      const index = this.#findProductIndex(productId);
 
       if (index != -1) {
         this.cartItems[index].quantity += quantity;
@@ -46,11 +46,11 @@ class Cart {
         this.cartItems.push({ productId, quantity, deliveryOptionId: "1" });
       }
 
-      this.saveToStorage();
+      this.#saveToStorage();
     }
 
     addToCart(productId, quantity) {
-      const index = this.findProductIndex(productId);
+      const index = this.#findProductIndex(productId);
 
       if (index != -1) {
         this.cartItems[index].quantity += quantity;
@@ -58,38 +58,38 @@ class Cart {
         this.cartItems.push({ productId, quantity, deliveryOptionId: "1" });
       }
 
-      this.saveToStorage();
+      this.#saveToStorage();
     }
 
     removeFromCart(productId) {
-      const index = this.findProductIndex(productId);
+      const index = this.#findProductIndex(productId);
 
       if (index !== -1) {
         this.cartItems.splice(index, 1);
       }
 
-      this.saveToStorage();
+      this.#saveToStorage();
     }
 
     updateQuantity(productId, newQuantity) {
-      const index = this.findProductIndex(productId);
+      const index = this.#findProductIndex(productId);
 
       if (index !== -1) {
         this.cartItems[index].quantity = newQuantity;
-        this.saveToStorage();
+        this.#saveToStorage();
       }
     }
 
     updateDeliveryOption(productId, deliveryOptionId) {
-      const index = this.findProductIndex(productId);
+      const index = this.#findProductIndex(productId);
 
       if (index !== -1) {
         this.cartItems[index].deliveryOptionId = deliveryOptionId;
-        this.saveToStorage();
+        this.#saveToStorage();
       }
     }
 
-    findProductIndex(productId) {
+    #findProductIndex(productId) {
       const index = this.cartItems.findIndex(
         (cartItem) => cartItem.productId === productId
       );
