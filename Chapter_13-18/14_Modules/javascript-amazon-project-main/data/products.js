@@ -66,7 +66,7 @@ console.log(this);
 const object2 = {
   a: 2,
   b: this.a
-};*/
+};
 
 function logThis()
 {
@@ -82,7 +82,7 @@ const object3 = {
   }
 }
 
-object3.method();
+object3.method();*/
 
 export const products = [
   {
